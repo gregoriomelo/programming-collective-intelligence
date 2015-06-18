@@ -88,3 +88,10 @@ def sim_pearson(prefs,p1,p2):
 
     r = num / den
     return r
+
+def top_matches(prefs, person, number_of_results = 5, similarity = sim_pearson):
+    scores = [(similarity(prefs, person, other), other) for other in prefs if other != person]
+
+    scores.sort()
+    scores.reverse()
+    return scores[0:number_of_results]
